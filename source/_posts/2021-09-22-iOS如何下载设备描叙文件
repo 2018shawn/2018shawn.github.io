@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "iOS如何下载设备描叙文件"
+date:   2021-09-22 18:14:00 +0800
+categories: iOS
+---
+
+方法1:
+    百度搜索iOSXX版本的设备描叙文件，并且下载下来；
+
+方法2:
+    要求：具有Apple开发者资格
+    点击链接[Beta Software - Downloads - Apple Developer](https://developer.apple.com/download/)
+    然后选择对应的描叙文件下载
