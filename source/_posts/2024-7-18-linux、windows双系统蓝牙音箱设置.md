@@ -1,5 +1,5 @@
 ---
-title: "Git代理设置"
+title: "Win11 + Archlinux 双系统自动连接相同蓝牙设备 "
 date: 2024-07-28 10:56:00 +0800
 top: false
 cover: false
@@ -10,8 +10,6 @@ summary:
 tags:
 categories: linux bluetooth
 ---
-
-# Win10 + Ubuntu 19.10 双系统自动连接相同蓝牙设备 
 
 ## 0x00 技术原理
 通常情况下双系统的蓝牙地址并不会改变，但连接信息（电脑与蓝牙设备交换的密钥）不同，导致双系统无法自动连接蓝牙设备，切换系统后需要删除设备后重新连接
