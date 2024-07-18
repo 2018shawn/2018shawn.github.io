@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Git代理设置 | Shawn Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Win10 + Ubuntu 19.10 双系统自动连接相同蓝牙设备0x00 技术原理通常情况下双系统的蓝牙地址并不会改变，但连接信息（电脑与蓝牙设备交换的密钥）不同，导致双系统无法自动连接蓝牙设备，切换系统后需要删除设备后重新连接 本文通过修改 Windows 下蓝牙设备的连接信息使双系统均可自动连接蓝牙设备 0x01 环境OS 1: Windows 11 专业版  OS 2: Arch Lin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git代理设置">
+<meta property="og:url" content="https://2018shawn.github.io/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/">
+<meta property="og:site_name" content="Shawn Blog">
+<meta property="og:description" content="Win10 + Ubuntu 19.10 双系统自动连接相同蓝牙设备0x00 技术原理通常情况下双系统的蓝牙地址并不会改变，但连接信息（电脑与蓝牙设备交换的密钥）不同，导致双系统无法自动连接蓝牙设备，切换系统后需要删除设备后重新连接 本文通过修改 Windows 下蓝牙设备的连接信息使双系统均可自动连接蓝牙设备 0x01 环境OS 1: Windows 11 专业版  OS 2: Arch Lin">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-27T18:56:00.000Z">
+<meta property="article:modified_time" content="2024-07-18T03:34:22.713Z">
+<meta property="article:author" content="Shawn Yangs">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Shawn Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Shawn Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://2018shawn.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-2024-7-18-linux、windows双系统蓝牙音箱设置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-07-27T18:56:00.000Z" itemprop="datePublished">2024-07-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux-bluetooth/">linux bluetooth</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Git代理设置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Win10-Ubuntu-19-10-双系统自动连接相同蓝牙设备"><a href="#Win10-Ubuntu-19-10-双系统自动连接相同蓝牙设备" class="headerlink" title="Win10 + Ubuntu 19.10 双系统自动连接相同蓝牙设备"></a>Win10 + Ubuntu 19.10 双系统自动连接相同蓝牙设备</h1><h2 id="0x00-技术原理"><a href="#0x00-技术原理" class="headerlink" title="0x00 技术原理"></a>0x00 技术原理</h2><p>通常情况下双系统的蓝牙地址并不会改变，但连接信息（电脑与蓝牙设备交换的密钥）不同，导致双系统无法自动连接蓝牙设备，切换系统后需要删除设备后重新连接</p>
+<p>本文通过修改 Windows 下蓝牙设备的连接信息使双系统均可自动连接蓝牙设备</p>
+<h2 id="0x01-环境"><a href="#0x01-环境" class="headerlink" title="0x01 环境"></a>0x01 环境</h2><p>OS 1: Windows 11 专业版 </p>
+<p>OS 2: Arch Linux 6.9.9-arch1-1</p>
+<p>蓝牙设备: 小米小钢炮蓝牙音箱</p>
+<p>通常情况下双系统的蓝牙地址并不会改变，但连接信息（电脑与蓝牙设备交换的密钥）不同，导致双系统无法自动连接蓝牙设备，切换系统后需要删除设备后重新连接</p>
+<p>本文通过修改 Windows 下蓝牙设备的连接信息使双系统均可自动连接蓝牙设备</p>
+<h2 id="0x02-获取蓝牙设备信息"><a href="#0x02-获取蓝牙设备信息" class="headerlink" title="0x02 获取蓝牙设备信息"></a>0x02 获取蓝牙设备信息</h2><p>首先在 Ubuntu 下连接蓝牙设备，并访问如下目录</p>
+<p>/var/lib/bluetooth/80:XX:XX:XX:XX:3C/74:XX:XX:XX:XX:CB<br>其中 80:XX:XX:XX:XX:3C 为电脑蓝牙地址</p>
+<p>74:XX:XX:XX:XX:CB 为音箱蓝牙地址</p>
+<p>在该目录中执行 cat info 打印蓝牙设备信息，格式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[General]</span><br><span class="line">Name=小米小钢炮蓝牙音箱</span><br><span class="line">Class=0x240404</span><br><span class="line">SupportedTechnologies=BR/EDR;</span><br><span class="line">Trusted=true</span><br><span class="line">Blocked=false</span><br><span class="line">Services=00001108-0000-1000-8000-xxxxxxxxxxxx;0000110b-0000-1000-8000-xxxxxxxxxxxx;0000110c-0000-1000-8000-xxxxxxxxxxxx;0000110d-0000-1000-8000-xxxxxxxxxxxx;0000110e-0000-1000-8000-xxxxxxxxxxxx;0000111e-0000-1000-8000-xxxxxxxxxxxx;</span><br><span class="line"></span><br><span class="line">[LinkKey]</span><br><span class="line">Key=33 46 xx xx xx xx xx xx xx xx xx xx xx xx 5B E9</span><br><span class="line">Type=4</span><br><span class="line">PINLength=0</span><br></pre></td></tr></table></figure>
+
+<p>记录 [LinkKey] 块中的 Key 值，并切换到 Windows</p>
+<h2 id="0x03-修改-Windows-中的蓝牙连接信息"><a href="#0x03-修改-Windows-中的蓝牙连接信息" class="headerlink" title="0x03 修改 Windows 中的蓝牙连接信息"></a>0x03 修改 Windows 中的蓝牙连接信息</h2><p>在 Windows 中连接蓝牙设备，并下载 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/sysinternals/downloads/psexec">PsExec</a>, 使用管理员身份运行 cmd，执行 PsExec.exe -s -i regedit</p>
+<p>修改 <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\80XXXXXXXX3C\74XXXXXXXXCB</code> 的值为上一步记录下的 Key 值</p>
+<h2 id="0x04-archlinux-设置自动连接蓝牙音箱"><a href="#0x04-archlinux-设置自动连接蓝牙音箱" class="headerlink" title="0x04 archlinux 设置自动连接蓝牙音箱"></a>0x04 archlinux 设置自动连接蓝牙音箱</h2><p>将 <code>/etc/bluetooth/main.conf</code> 最后的 AutoEnable 值修改为 true</p>
+<p>参考链接:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.leviatan.cn/archives/26/">Win10 + Ubuntu 19.10 双系统自动连接相同蓝牙设备</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.lujun9972.win/blog/2017/07/18/%E5%9C%A8archlinux%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99%E8%80%B3%E6%9C%BA/">在archlinux中使用蓝牙耳机</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://2018shawn.github.io/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/" data-id="clyqpwg7a0007fuq29icy95nn" data-title="Git代理设置" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/01/27/2024-01-27-Git%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git代理设置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/QT/">QT</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git-proxy/">git proxy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux-bluetooth/">linux bluetooth</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">九月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/">Git代理设置</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/27/2024-01-27-Git%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/">Git代理设置</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/04/2023-07-04-qt%E5%9C%A8%E7%BA%BF%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8%E9%95%9C%E5%83%8F/">qt在线更新使用镜像</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/22/2021-09-22-iOS%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD%E8%AE%BE%E5%A4%87%E6%8F%8F%E5%8F%99%E6%96%87%E4%BB%B6/">iOS如何下载设备描叙文件</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/13/2021-09-14-C++%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E5%87%BD%E6%95%B0/">C++构造函数、拷贝构造函数、赋值运算函数</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 Shawn Yangs<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
