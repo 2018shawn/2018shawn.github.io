@@ -133,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2024/11/18/2024-11-19-Linux%E4%B8%8A%E6%B7%BB%E5%8A%A0grub%E5%BC%95%E5%AF%BC%E9%A1%B9/" data-id="cm4zeq5ll000bh0qabrca5r1h" data-title="Linux上添加grub引导项" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2024/11/18/2024-11-19-Linux%E4%B8%8A%E6%B7%BB%E5%8A%A0grub%E5%BC%95%E5%AF%BC%E9%A1%B9/" data-id="cm4zezttb000ciyq53smg2ha3" data-title="Linux上添加grub引导项" class="article-share-link">Teilen</a>
       
       
       
@@ -145,9 +145,9 @@
 
 
   
-    <article id="post-2024-7-18-linux、windows双系统蓝牙音箱设置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-2024-07-18-linux、windows双系统蓝牙音箱设置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/" class="article-date">
+    <a href="/2024/07/27/2024-07-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/" class="article-date">
   <time class="dt-published" datetime="2024-07-27T18:56:00.000Z" itemprop="datePublished">2024-07-28</time>
 </a>
     
@@ -163,7 +163,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/">Win11 + Archlinux 双系统自动连接相同蓝牙设备 </a>
+      <a class="p-name article-title" href="/2024/07/27/2024-07-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/">Win11 + Archlinux 双系统自动连接相同蓝牙设备 </a>
     </h1>
   
 
@@ -178,10 +178,10 @@
 <p>蓝牙设备: 小米小钢炮蓝牙音箱</p>
 <p>通常情况下双系统的蓝牙地址并不会改变，但连接信息（电脑与蓝牙设备交换的密钥）不同，导致双系统无法自动连接蓝牙设备，切换系统后需要删除设备后重新连接</p>
 <p>本文通过修改 Windows 下蓝牙设备的连接信息使双系统均可自动连接蓝牙设备</p>
-<h2 id="0x02-获取蓝牙设备信息"><a href="#0x02-获取蓝牙设备信息" class="headerlink" title="0x02 获取蓝牙设备信息"></a>0x02 获取蓝牙设备信息</h2><p>首先在 Ubuntu 下连接蓝牙设备，并访问如下目录</p>
-<p>/var/lib/bluetooth/80:XX:XX:XX:XX:3C/74:XX:XX:XX:XX:CB<br>其中 80:XX:XX:XX:XX:3C 为电脑蓝牙地址</p>
-<p>74:XX:XX:XX:XX:CB 为音箱蓝牙地址</p>
-<p>在该目录中执行 cat info 打印蓝牙设备信息，格式如下</p>
+<h2 id="0x02-获取蓝牙设备信息"><a href="#0x02-获取蓝牙设备信息" class="headerlink" title="0x02 获取蓝牙设备信息"></a>0x02 获取蓝牙设备信息</h2><p>首先在 Ubuntu 下连接蓝牙设备，<br>如果是普通用户，需要切换到root账户<br><code>sudo su</code><br>访问如下目录:<br>/var/lib/bluetooth/80:XX:XX:XX:XX:3C/74:XX:XX:XX:XX:CB<br>命令行如下，替换上自己的的蓝牙地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/lib/bluetooth/80:XX:XX:XX:XX:3C/74:XX:XX:XX:XX:CB</span><br></pre></td></tr></table></figure>
+<p>其中 80:XX:XX:XX:XX:3C 为电脑蓝牙地址，74:XX:XX:XX:XX:CB为音箱蓝牙地址</p>
+<p>在该目录下执行 <code>cat info</code> 打印蓝牙设备信息，格式如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[General]</span><br><span class="line">Name=小米小钢炮蓝牙音箱</span><br><span class="line">Class=0x240404</span><br><span class="line">SupportedTechnologies=BR/EDR;</span><br><span class="line">Trusted=true</span><br><span class="line">Blocked=false</span><br><span class="line">Services=00001108-0000-1000-8000-xxxxxxxxxxxx;0000110b-0000-1000-8000-xxxxxxxxxxxx;0000110c-0000-1000-8000-xxxxxxxxxxxx;0000110d-0000-1000-8000-xxxxxxxxxxxx;0000110e-0000-1000-8000-xxxxxxxxxxxx;0000111e-0000-1000-8000-xxxxxxxxxxxx;</span><br><span class="line"></span><br><span class="line">[LinkKey]</span><br><span class="line">Key=33 46 xx xx xx xx xx xx xx xx xx xx xx xx 5B E9</span><br><span class="line">Type=4</span><br><span class="line">PINLength=0</span><br></pre></td></tr></table></figure>
 
 <p>记录 [LinkKey] 块中的 Key 值，并切换到 Windows</p>
@@ -197,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/" data-id="cm4zeq5ln000ch0qafm1oecfj" data-title="Win11 + Archlinux 双系统自动连接相同蓝牙设备 " class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2024/07/27/2024-07-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/" data-id="cm4zeztta000biyq5949wh5dl" data-title="Win11 + Archlinux 双系统自动连接相同蓝牙设备 " class="article-share-link">Teilen</a>
       
       
       
@@ -278,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2024/01/27/2024-01-27-Git%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" data-id="cm4zeq5lk0008h0qaeelyh2x5" data-title="Git代理设置" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2024/01/27/2024-01-27-Git%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" data-id="cm4zeztt90008iyq54v8g9iva" data-title="Git代理设置" class="article-share-link">Teilen</a>
       
       
       
@@ -327,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2023/07/04/2023-07-04-qt%E5%9C%A8%E7%BA%BF%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8%E9%95%9C%E5%83%8F/" data-id="cm4zeq5lj0007h0qa2n1ncu2h" data-title="qt在线更新使用镜像" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2023/07/04/2023-07-04-qt%E5%9C%A8%E7%BA%BF%E6%9B%B4%E6%96%B0%E4%BD%BF%E7%94%A8%E9%95%9C%E5%83%8F/" data-id="cm4zeztt80007iyq537rp1emn" data-title="qt在线更新使用镜像" class="article-share-link">Teilen</a>
       
       
       
@@ -374,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2021/09/23/2021-09-23-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B0%83%E8%AF%95iOS%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cm4zeq5li0005h0qa7ceg5gjv" data-title="第一次调试iOS遇到的问题" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2021/09/23/2021-09-23-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B0%83%E8%AF%95iOS%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cm4zeztt70005iyq5dylze24t" data-title="第一次调试iOS遇到的问题" class="article-share-link">Teilen</a>
       
       
       
@@ -418,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2021/09/22/2021-09-23-Mac%20OS%E4%B8%AD%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E5%BF%AB%E6%8D%B7%E8%BE%93%E5%85%A5/" data-id="cm4zeq5lh0004h0qa0qmtdy6y" data-title="Mac OS中数学符号快捷输入" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2021/09/22/2021-09-23-Mac%20OS%E4%B8%AD%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E5%BF%AB%E6%8D%B7%E8%BE%93%E5%85%A5/" data-id="cm4zeztt60004iyq51vb9gzh8" data-title="Mac OS中数学符号快捷输入" class="article-share-link">Teilen</a>
       
       
       
@@ -462,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2021/09/22/2021-09-22-iOS%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD%E8%AE%BE%E5%A4%87%E6%8F%8F%E5%8F%99%E6%96%87%E4%BB%B6/" data-id="cm4zeq5lh0003h0qae468cyyq" data-title="iOS如何下载设备描叙文件" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2021/09/22/2021-09-22-iOS%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD%E8%AE%BE%E5%A4%87%E6%8F%8F%E5%8F%99%E6%96%87%E4%BB%B6/" data-id="cm4zeztt50003iyq57jf18h2v" data-title="iOS如何下载设备描叙文件" class="article-share-link">Teilen</a>
       
       
       
@@ -510,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2021/09/13/2021-09-14-C++%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E5%87%BD%E6%95%B0/" data-id="cm4zeq5la0000h0qahwo3gi1w" data-title="C++构造函数、拷贝构造函数、赋值运算函数" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2021/09/13/2021-09-14-C++%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E5%87%BD%E6%95%B0/" data-id="cm4zeztt30001iyq56q7a0xcx" data-title="C++构造函数、拷贝构造函数、赋值运算函数" class="article-share-link">Teilen</a>
       
       
       
@@ -567,7 +567,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://2018shawn.github.io/2021/09/12/2021-09-12-%E5%A6%82%E4%BD%95%E5%9C%A8git%E4%B8%AD%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" data-id="cm4zeq5le0001h0qadm441jds" data-title="如何在git中删除指定的文件和目录" class="article-share-link">Teilen</a>
+      <a data-url="https://2018shawn.github.io/2021/09/12/2021-09-12-%E5%A6%82%E4%BD%95%E5%9C%A8git%E4%B8%AD%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95/" data-id="cm4zeztsz0000iyq544t2c1dl" data-title="如何在git中删除指定的文件和目录" class="article-share-link">Teilen</a>
       
       
       
@@ -621,7 +621,7 @@
           </li>
         
           <li>
-            <a href="/2024/07/27/2024-7-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/">Win11 + Archlinux 双系统自动连接相同蓝牙设备 </a>
+            <a href="/2024/07/27/2024-07-18-linux%E3%80%81windows%E5%8F%8C%E7%B3%BB%E7%BB%9F%E8%93%9D%E7%89%99%E9%9F%B3%E7%AE%B1%E8%AE%BE%E7%BD%AE/">Win11 + Archlinux 双系统自动连接相同蓝牙设备 </a>
           </li>
         
           <li>
