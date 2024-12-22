@@ -1,0 +1,16 @@
+---
+title: "Linux普通账户切换到root用户"
+date: 2024-12-23 13:19:00 +0800
+top: false
+cover: false
+password:
+toc: true
+mathjax: true
+summary:
+tags:
+categories: linux
+---
+## 0x00 普通账户切换到root用户
+终端命令如下：
+`sudo su`
+注意：如果当前的账户是root账户了就不用切换了。
