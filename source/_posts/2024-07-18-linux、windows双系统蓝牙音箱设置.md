@@ -28,14 +28,18 @@ OS 2: Arch Linux 6.9.9-arch1-1
 本文通过修改 Windows 下蓝牙设备的连接信息使双系统均可自动连接蓝牙设备
 
 ## 0x02 获取蓝牙设备信息
-首先在 Ubuntu 下连接蓝牙设备，并访问如下目录
-
+首先在 Ubuntu 下连接蓝牙设备，
+如果是普通用户，需要切换到root账户
+```sudo su```
+访问如下目录:
 /var/lib/bluetooth/80:XX:XX:XX:XX:3C/74:XX:XX:XX:XX:CB
-其中 80:XX:XX:XX:XX:3C 为电脑蓝牙地址
+命令行如下，替换上自己的的蓝牙地址：
+```bash
+cd /var/lib/bluetooth/80:XX:XX:XX:XX:3C/74:XX:XX:XX:XX:CB
+```
+其中 80:XX:XX:XX:XX:3C 为电脑蓝牙地址，74:XX:XX:XX:XX:CB为音箱蓝牙地址
 
-74:XX:XX:XX:XX:CB 为音箱蓝牙地址
-
-在该目录中执行 cat info 打印蓝牙设备信息，格式如下
+在该目录下执行 `cat info` 打印蓝牙设备信息，格式如下
 ```
 [General]
 Name=小米小钢炮蓝牙音箱
