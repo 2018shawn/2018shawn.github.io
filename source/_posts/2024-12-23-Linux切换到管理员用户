@@ -10,6 +10,7 @@ summary:
 tags:
 categories: linux
 ---
+
 ## 0x00 普通账户切换到root用户
 终端命令如下：
 `sudo su`
