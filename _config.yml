@@ -23,8 +23,9 @@ email: AIGC_2025@outlook.com
 description: "Focusing on C++and artificial intelligence."
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: 2018shawn
+url: "https://2018shawn.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+# SNS settings
+RSS: false
 github_username:  2018shawn
 
 # Build settings
