@@ -20,8 +20,8 @@
 
 title: 道法自然（Dao Follows Nature）
 email: AIGC_2025@outlook.com
-description: >- # this means to ignore newlines until "baseurl:"
-Focusing on C++and artificial intelligence.
+description: "Focusing on C++and artificial intelligence."
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
