@@ -39,10 +39,6 @@ theme: minima
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-exclude:
-  - rss.xml      # 你的 RSS 文件名
-  - feed.xml     # 或默认文件名
-  - atom.xml 
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
