@@ -1,6 +1,6 @@
 ---
 title: "Github Pages设置Jekyll过程"
-date: 2025-07-04 19:43 +0800
+date: 2025-07-04 19:43:00 +0800
 top: false
 cover: false
 password:
