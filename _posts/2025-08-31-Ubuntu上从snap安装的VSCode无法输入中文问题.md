@@ -18,8 +18,13 @@ Snap应用运用在严格的沙箱中，访问接口受限制。
 
 ### 解决方法：
 1.卸载在snap上安装的VS Code
-2.
-方法一：通过下载VS Code.deb文件进行安装：
+
+2.重新下载安装VS Code
+
+方法一：通过[官网](https://code.visualstudio.com/download)下载VS Code.deb文件,通过dkpg命令进行安装：
+```bash
+sudo dpkg -i your_code_package_name.deb
+```
 
 方法二：通过包管理工具apt添加VSCode外部存储库，交给apt来管理，执行如下步骤的命令行：
 
