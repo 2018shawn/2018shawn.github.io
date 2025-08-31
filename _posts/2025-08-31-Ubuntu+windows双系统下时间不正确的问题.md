@@ -36,4 +36,5 @@ sudo apt install util-linux-extra
 sudo hwclock --localtime
 ```
 
-
+参考链接：
+[完美解决ubuntu+windows双系统下时间不正确问题](https://blog.csdn.net/qq_42475234/article/details/136275280)
