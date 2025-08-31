@@ -33,7 +33,7 @@ sudo apt install util-linux-extra
 
 4. 将系统时间同步机制由UTC改为与Windows一样的LocalTime
 ```bash
-sudo hwclock --localtime
+sudo hwclock --localtime --systohc
 ```
 
 参考链接：
